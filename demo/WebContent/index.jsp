@@ -7,6 +7,6 @@
 <title>Jenkin Pipeline</title>
 </head>
 <body>
-CI/CD page
+CI/CD page 2
 </body>
 </html>
