@@ -4,6 +4,7 @@ pipeline{
         stage('Build'){
             steps{
                 echo 'Building Okay..'
+                echo "whomai"
                 sh "echo $PATH"
                 sh 'mvn clean package -X'
                 sh "docker build . -t demo:${env.BUILD_ID}"
