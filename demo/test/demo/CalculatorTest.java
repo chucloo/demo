@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class TestCalculator {
+class CalculatorTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -27,8 +27,28 @@ class TestCalculator {
 	}
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void testAdd() {
+		Calculator calculator = new Calculator();
+	    int a = 1234;
+	    int b = 5678;
+	    int actual = calculator.addition(a, b);
+	    int expected = 6912;
+	 
+	    assertEquals(expected, actual);
+		
+	}
+	
+	
+	@Test
+	public void testSubtract() {
+	    Calculator calculator = new Calculator();
+	    int a = 1234;
+	    int b = 5678;
+	    int actual = calculator.substraction(b, a);
+	 
+	    int expected = 4444;
+	 
+	    assertEquals(expected, actual);
 	}
 
 }
