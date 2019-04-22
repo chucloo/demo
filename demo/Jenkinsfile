@@ -9,7 +9,7 @@ pipeline{
                 echo 'Building Okay..'
                 sh "whoami"
                 sh "echo $PATH"
-                sh 'mvn clean package -X'
+                sh 'mvn -f demo/pom.xml clean package -X'
                 sh "docker build . -t demo:${env.BUILD_ID}"
             }
         }
