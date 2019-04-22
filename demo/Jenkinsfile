@@ -11,7 +11,7 @@ pipeline{
                 sh "echo $PATH"
                 sh 'mvn -f demo/pom.xml clean package -X'
                 /*sh "docker build . -t demo:${env.BUILD_ID}"*/
-                sh "docker build -f demo/Dockerfile -t demo:${env.BUILD_ID}
+                sh "docker build -f demo/Dockerfile -t demo:${env.BUILD_ID}"
             }
         }
     }
