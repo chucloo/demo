@@ -14,5 +14,10 @@ pipeline{
                 sh "docker build . -f demo/Dockerfile -t demo:${env.BUILD_ID}"
             }
         }
-    }
+      
+      	post {
+      			always {
+        			junit '**/reports/junit/*.xml'
+      				}
+      		 }
 }
