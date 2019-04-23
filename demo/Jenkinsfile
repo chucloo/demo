@@ -20,4 +20,6 @@ pipeline{
         			junit '**/reports/junit/*.xml'
       				}
       		 }
+
+		}
 }
