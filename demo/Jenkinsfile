@@ -4,6 +4,7 @@ pipeline{
     PATH = "/opt/maven/bin:$PATH"
     }
         stages{
+        
         stage('Build'){
             steps{
                 echo 'Building Okay..'
@@ -14,6 +15,22 @@ pipeline{
                 sh "docker build . -f demo/Dockerfile -t demo:${env.BUILD_ID}"
             }
         }
+    
+    stage('Sonarqube') {
+    						environment {
+       							 scannerHome = tool 'localSonar'
+   								 		}
+    					steps {
+        						withSonarQubeEnv('sonarqube') {
+            					sh "${scannerHome}/bin/sonar-scanner"
+       											 }
+       							 timeout(time: 10, unit: 'MINUTES') {
+            					waitForQualityGate abortPipeline: true
+        					}
+   						 }
+}
+    
+    
     
 		}
 
