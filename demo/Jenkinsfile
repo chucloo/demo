@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment {
-    PATH = "/opt/maven/bin:$PATH"
+    PATH = "/opt/sonar/bin:/opt/maven/bin:$PATH"
     }
         stages{
         
