@@ -21,7 +21,7 @@ pipeline{
        							 scannerHome = tool 'localSonar'
    								 		}
     					steps {
-        						withSonarQubeEnv('sonarqube') {
+        						withSonarQubeEnv('aws_sonarqube') {
             					sh "${scannerHome}/bin/sonar-scanner"
        											 }
        							 timeout(time: 10, unit: 'MINUTES') {
