@@ -2,7 +2,8 @@ package demo;
 
 public class Calculator {
 
-		// TODO Auto-generated constructor stub
+	/***	
+	// TODO Auto-generated constructor stub
 		
 		public int addition(int num1, int num2) {
 	        
@@ -15,7 +16,7 @@ public class Calculator {
 				  ; // do nothing
 			else if (param == 1)  // Noncompliant
 				; // do nothing
-			
+		***/	
 			
 			return (num1 + num2);
 	    }
