@@ -19,6 +19,7 @@ pipeline{
         }
     
     //
+    /*** start only if needed due to cost
     stage('Sonarqube') {
     						environment {
        							 scannerHome = tool 'localSonar'
@@ -32,6 +33,7 @@ pipeline{
         					}
    						 }
 }
+    **/
     //
     
     
