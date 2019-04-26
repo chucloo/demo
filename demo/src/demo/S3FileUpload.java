@@ -78,7 +78,7 @@ public class S3FileUpload extends HttpServlet {
 			
 			// create a PutObjectRequest passing the folder name suffixed by /
             ObjectMetadata s3ObjectMetadata = new ObjectMetadata();
-            PutObjectRequest putObjectRequest = new PutObjectRequest("iam","NETS/" + fileName, part.getInputStream(),s3ObjectMetadata);
+            PutObjectRequest putObjectRequest = new PutObjectRequest("ufinityiam","NETS/" + fileName, part.getInputStream(),s3ObjectMetadata);
             s3Client.putObject(putObjectRequest);
         }
         request.setAttribute("message", "Upload has been done successfully!");
