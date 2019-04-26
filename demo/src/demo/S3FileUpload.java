@@ -66,7 +66,7 @@ public class S3FileUpload extends HttpServlet {
 		
 		BasicAWSCredentials creds = new BasicAWSCredentials("AKIAVG57AUNSUMHDRCQ3", "N9ToSs3TRkZI1BTWoU8CBD0Yqwt53YcbDKOxUXoL"); 
 		//AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(creds)).build();
-		AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(creds)).withRegion("ap-east-1").build();
+		AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(creds)).withRegion("ap-southeast-1").build();
 		//s3Client.setRegion(Region.AP_Singapore);
 		
 		for (Part part : request.getParts()) {
