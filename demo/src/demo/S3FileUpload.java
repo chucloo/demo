@@ -12,6 +12,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
 
 import com.amazonaws.auth.*;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.*;
 import com.amazonaws.services.s3.AmazonS3Client.*;
 import com.amazonaws.services.s3.model.*;
@@ -64,12 +65,13 @@ public class S3FileUpload extends HttpServlet {
 		//https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/AmazonS3Client.html
 		
 		BasicAWSCredentials creds = new BasicAWSCredentials("AKIAVG57AUNSUMHDRCQ3", "N9ToSs3TRkZI1BTWoU8CBD0Yqwt53YcbDKOxUXoL"); 
-		AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(creds)).build();
-		
+		//AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(creds)).build();
+		AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(creds)).withRegion(Regions.AP_NORTHEAST_1).build();
+		//s3Client.setRegion(Region.AP_Singapore);
 		
 		for (Part part : request.getParts()) {
             String fileName = extractFileName(part);
-            //refines the fileName in case it is an absolute path
+            //refines the fileName in case it is an absolute pat
             fileName = new File(fileName).getName();
             
             //part.write(savePath + File.separator + fileName);
