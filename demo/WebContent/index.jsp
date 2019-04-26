@@ -17,6 +17,15 @@ CI/CD page 3 ... With Docker
     Addition:
     <%= calculator.addition(50, 10) %>
 
+<br>
+
+ <h1>File Upload</h1>
+    <form method="post" action="S3FileUpload"
+        enctype="multipart/form-data">
+        Select file to upload: <input type="file" name="file" size="60" /><br />
+        <br /> <input type="submit" value="Upload" />
+  </form>
+
 
 </body>
 </html>
