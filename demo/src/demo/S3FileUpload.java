@@ -11,6 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
 
+import com.amazonaws.auth.*;
+import com.amazonaws.services.s3.*;
+import com.amazonaws.services.s3.AmazonS3Client.*;
+import com.amazonaws.services.s3.model.*;
+
+import java.io.File;
+
 
 
 /**
@@ -50,19 +57,31 @@ public class S3FileUpload extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
-		AWSCredentials credentials = new BasicAWSCredentials("AKIAVG57AUNSUMHDRCQ3", "N9ToSs3TRkZI1BTWoU8CBD0Yqwt53YcbDKOxUXoL");
+		//AWSCredentials credentials = new BasicAWSCredentials("AKIAVG57AUNSUMHDRCQ3", "N9ToSs3TRkZI1BTWoU8CBD0Yqwt53YcbDKOxUXoL");
+		//AmazonS3 s3client = new AmazonS3Client(credentials);
+		
+		//create S3 client
+		//https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/AmazonS3Client.html
+		
+		BasicAWSCredentials creds = new BasicAWSCredentials("AKIAVG57AUNSUMHDRCQ3", "N9ToSs3TRkZI1BTWoU8CBD0Yqwt53YcbDKOxUXoL"); 
+		AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(creds)).build();
 		
 		
 		for (Part part : request.getParts()) {
-            //String fileName = extractFileName(part);
-            // refines the fileName in case it is an absolute path
-            //fileName = new File(fileName).getName();
+            String fileName = extractFileName(part);
+            //refines the fileName in case it is an absolute path
+            fileName = new File(fileName).getName();
+            
             //part.write(savePath + File.separator + fileName);
+			
+			// create a PutObjectRequest passing the folder name suffixed by /
+            ObjectMetadata s3ObjectMetadata = new ObjectMetadata();
+            PutObjectRequest putObjectRequest = new PutObjectRequest("iam","NETS/" + fileName, part.getInputStream(),s3ObjectMetadata);
+            s3Client.putObject(putObjectRequest);
         }
         request.setAttribute("message", "Upload has been done successfully!");
         getServletContext().getRequestDispatcher("/message.jsp").forward(
                 request, response);
-		
 		
 		
 	}
@@ -80,6 +99,6 @@ public class S3FileUpload extends HttpServlet {
         }
         return "";
     }
-	
+	;
 	
 }
