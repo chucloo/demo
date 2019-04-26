@@ -61,7 +61,7 @@ public class S3FileUpload extends HttpServlet {
 		//AWSCredentials credentials = new BasicAWSCredentials("AKIAVG57AUNSUMHDRCQ3", "N9ToSs3TRkZI1BTWoU8CBD0Yqwt53YcbDKOxUXoL");
 		//AmazonS3 s3client = new AmazonS3Client(credentials);
 		
-		//create S3 client
+		//create S3 client Test
 		//https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/AmazonS3Client.html
 		
 		BasicAWSCredentials creds = new BasicAWSCredentials("AKIAVG57AUNSUMHDRCQ3", "N9ToSs3TRkZI1BTWoU8CBD0Yqwt53YcbDKOxUXoL"); 
