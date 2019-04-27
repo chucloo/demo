@@ -7,6 +7,7 @@
   <name>demo</name>
   <description>CI/CD demo</description>
  
+ <!--AWS SDK-->
  <dependencyManagement>
     <dependencies>
       <dependency>
