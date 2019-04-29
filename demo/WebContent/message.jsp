@@ -10,5 +10,11 @@
   <div id="result">
             <h3>${requestScope["message"]}</h3>
    </div>
+   
+ <br>
+ The list of files in this folder:<br>
+  ${requestScope["folderobject"]}
+   
+   
 </body>
 </html>

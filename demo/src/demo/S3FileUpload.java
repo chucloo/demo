@@ -12,12 +12,14 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
 
 import com.amazonaws.auth.*;
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.*;
 import com.amazonaws.services.s3.AmazonS3Client.*;
 import com.amazonaws.services.s3.model.*;
+import com.amazonaws.services.s3.model.ObjectListing;
 
 import java.io.File;
+import java.util.*;
+
 
 
 
@@ -58,16 +60,13 @@ public class S3FileUpload extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
-		//AWSCredentials credentials = new BasicAWSCredentials("AKIAVG57AUNSUMHDRCQ3", "N9ToSs3TRkZI1BTWoU8CBD0Yqwt53YcbDKOxUXoL");
-		//AmazonS3 s3client = new AmazonS3Client(credentials);
 		
 		//create S3 client Test
 		//https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/AmazonS3Client.html
 		
-		BasicAWSCredentials creds = new BasicAWSCredentials("AKIAVG57AUNSUMHDRCQ3", "N9ToSs3TRkZI1BTWoU8CBD0Yqwt53YcbDKOxUXoL"); 
-		//AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(creds)).build();
+		BasicAWSCredentials creds = new BasicAWSCredentials("", ""); 
 		AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(creds)).withRegion("ap-southeast-1").build();
-		//s3Client.setRegion(Region.AP_Singapore);
+
 		
 		for (Part part : request.getParts()) {
             String fileName = extractFileName(part);
@@ -81,7 +80,32 @@ public class S3FileUpload extends HttpServlet {
             PutObjectRequest putObjectRequest = new PutObjectRequest("ufinityiam","NETS/" + fileName, part.getInputStream(),s3ObjectMetadata);
             s3Client.putObject(putObjectRequest);
         }
+		
+		//API 2: Get folder list
+		
+		String folderObject = "";
+
+		ListObjectsRequest listObjectsRequest = new ListObjectsRequest()
+			    .withBucketName("ufinityiam")
+			    .withPrefix("NETS/");
+		ObjectListing objectListing;
+		
+		do {
+	        objectListing = s3Client.listObjects(listObjectsRequest);
+	        for (S3ObjectSummary objectSummary : 
+	            objectListing.getObjectSummaries()) {
+	        	folderObject=  folderObject + "<br>"  + objectSummary.getKey() + "  " + "(size = " + objectSummary.getSize() +  ")";
+	        	System.out.println("....." + folderObject );
+	        }
+	        listObjectsRequest.setMarker(objectListing.getNextMarker());
+	} while (objectListing.isTruncated());
+		
+		
+		
+		
+		
         request.setAttribute("message", "Upload has been done successfully!");
+        request.setAttribute("folderobject", folderObject);
         getServletContext().getRequestDispatcher("/message.jsp").forward(
                 request, response);
 		
