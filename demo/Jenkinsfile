@@ -3,7 +3,7 @@ pipeline{
     environment {
     PATH = "/opt/sonar/bin:/opt/maven/bin:$PATH"
     registryCredential = 'ecr:ap-southeast-1:demoecrid'
-    ECRURL ='https://358493496165.dkr.ecr.ap-southeast-1.amazonaws.com/uploadfille'
+    ECRURL ='https://358493496165.dkr.ecr.ap-southeast-1.amazonaws.com'
     
     }
         stages{
@@ -34,10 +34,6 @@ pipeline{
     
          script {
          
-          //docker.withRegistry('https://358493496165.dkr.ecr.ap-southeast-1.amazonaws.com/uploadfille', 'ecr:demoecrid') {docker.image('demo').push('latest')}
-          //docker.withRegistry('https://358493496165.dkr.ecr.ap-southeast-1.amazonaws.com/uploadfille', registryCredential) {docker.image('demo').push('latest')}
-          //
-          //docker.withRegistry('https://358493496165.dkr.ecr.ap-southeast-1.amazonaws.com/uploadfille', 'ecr:ap-southeast-1:demoecrid') {docker.image('demo').push('latest')}
          
           docker.withRegistry(ECRURL,registryCredential)
            {
