@@ -20,7 +20,7 @@ pipeline{
     
     stage('Docker Push'){
      steps{
-    			//sh "docker.withRegistry('https://358493496165.dkr.ecr.ap-southeast-1.amazonaws.com/uploadfille', 'ecr:ap-southeast-1:demoecrid') {docker.image('demo').push('latest')"
+    			//sh "docker.withRegistry('https://358493496165.dkr.ecr.ap-southeast-1.amazonaws.com/uploadfille', 'ecr:us-east-1:demoecrid') {docker.image('demo').push('latest')"
     
          script {
          
