@@ -2,7 +2,7 @@ pipeline{
     agent any
     environment {
     PATH = "/opt/sonar/bin:/opt/maven/bin:$PATH"
-    registryCredential = 'gcr:demoecrid'
+    registryCredential = 'ecr:ap-southeast-1:demoecrid'
     ECRURL ='https://358493496165.dkr.ecr.ap-southeast-1.amazonaws.com/uploadfille'
     
     }
