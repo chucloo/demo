@@ -11,6 +11,12 @@ pipeline{
                 echo 'Building Okay..'
                 sh "whoami"
                 sh "echo $PATH"
+                
+                //cleanup current user docker credentials
+       			 sh 'rm  ~/.dockercfg || true'
+       			 sh 'rm ~/.docker/config.json || true'
+                
+                
                 //echo 'Workspace is..'
                 //sh  "echo $WORKSPACE"
                 sh 'mvn -f demo/pom.xml clean package -X'
