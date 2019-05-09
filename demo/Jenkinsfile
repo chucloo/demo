@@ -28,7 +28,7 @@ pipeline{
                 /*sh "docker build . -t demo:${env.BUILD_ID}"*/
                 //sh "docker build . -f demo/Dockerfile -t demo:${env.BUILD_ID}"
                 //sh "docker build . -f demo/Dockerfile -t demo"
-                sh "docker build . -f demo/Dockerfile -t demo --build-arg myKey=$mykey mySecret=$mySecret"
+                sh "docker build . -f demo/Dockerfile -t demo --build-arg myKey=$mykey --build-arg mySecret=$mySecret"
             }
         }
     
