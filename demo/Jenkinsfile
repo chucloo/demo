@@ -4,8 +4,8 @@ pipeline{
     PATH = "/opt/sonar/bin:/opt/maven/bin:$PATH"
     registryCredential = 'ecr:ap-southeast-1:demoecrid'
     ECRURL ='https://358493496165.dkr.ecr.ap-southeast-1.amazonaws.com'
-    myKey = $myAWSKey
-    mySecret=$myAWSSecret 
+    myKey = "$myAWSKey"
+    mySecret="$myAWSSecret" 
     }
         stages{
         
