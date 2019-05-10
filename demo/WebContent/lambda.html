@@ -5,7 +5,13 @@ function myFunction() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("my-demo").innerHTML = this.responseText;
+        
+        data = 	this.responseText;
+        var json = JSON.parse(data);   	
+        //document.getElementById("my-demo").innerHTML = this.responseText;
+        document.getElementById("my-demo").innerHTML = json.body;
+
+        
         }
     };
     xhttp.open("GET", "https://4p65ov5hmj.execute-api.ap-southeast-1.amazonaws.com/default/JavaLambda-dev-hello", true);
