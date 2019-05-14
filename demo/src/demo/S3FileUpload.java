@@ -64,9 +64,18 @@ public class S3FileUpload extends HttpServlet {
 		//create S3 client Test
 		//https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/AmazonS3Client.html
 		
-		BasicAWSCredentials creds = new BasicAWSCredentials("", ""); 
+		/**
+		// Create user with hard coded ID - Password
+		BasicAWSCredentials creds = new BasicAWSCredentials("xxx", "yyyy"); 
 		AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(creds)).withRegion("ap-southeast-1").build();
-
+		
+		**/
+		
+		// Create user with environment ID/ Password
+		// https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html
+		AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion("ap-southeast-1").build();
+		
+	
 		
 		for (Part part : request.getParts()) {
             String fileName = extractFileName(part);
