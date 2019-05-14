@@ -1,9 +1,9 @@
 FROM tomcat:8.0
-ARG myKey
-ARG mySecret
+ARG AWS_ACCESS_KEY_ID
+ARG AWS_SECRET_ACCESS_KEY
 
-ENV myKeyEnv=$myKey
-ENV mySecretEnv=$mySecret
+ENV AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+ENV AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
 
 #ADD ./webapp/target/*.war /usr/local/tomcat/webapps/
 ADD demo/target/*.war /usr/local/tomcat/webapps/
