@@ -53,7 +53,7 @@ pipeline{
     
     
     //
-    /*** start only if needed due to cost
+    //start only if needed due to cost
     stage('Sonarqube') {
     						environment {
        							 scannerHome = tool 'localSonar'
@@ -67,7 +67,7 @@ pipeline{
         					}
    						 }
 }
-    **/
+    //end here
     //
     
     
