@@ -17,6 +17,13 @@ import com.amazonaws.services.s3.AmazonS3Client.*;
 import com.amazonaws.services.s3.model.*;
 import com.amazonaws.services.s3.model.ObjectListing;
 
+import com.amazonaws.services.sns.*;
+import com.amazonaws.services.sns.AmazonSNSClient.*;
+import com.amazonaws.services.sns.model.*;
+
+
+
+
 import java.io.File;
 import java.util.*;
 
@@ -74,7 +81,7 @@ public class S3FileUpload extends HttpServlet {
 		// Create user with environment ID/ Password
 		// https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html
 		AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion("ap-southeast-1").build();
-		
+		AmazonSNS snsClient = AmazonSNSClientBuilder.standard().withRegion("ap-southeast-1").build();
 	
 		
 		for (Part part : request.getParts()) {
@@ -110,6 +117,12 @@ public class S3FileUpload extends HttpServlet {
 	} while (objectListing.isTruncated());
 		
 		
+		// Publish a message to an Amazon SNS topic.
+		final String msg = "SNS - File Uploaded";
+		final PublishRequest publishRequest = new PublishRequest("arn:aws:sns:ap-southeast-1:358493496165:LambdaBreach", msg);
+		final PublishResult publishResponse = snsClient.publish(publishRequest);
+		 // Print the MessageId of the message.
+		System.out.println("MessageId: " + publishResponse.getMessageId());
 		
 		
 		
