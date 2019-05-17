@@ -116,14 +116,14 @@ public class S3FileUpload extends HttpServlet {
 	        listObjectsRequest.setMarker(objectListing.getNextMarker());
 	} while (objectListing.isTruncated());
 		
-		
+		/**** if demo sms
 		// Publish a message to an Amazon SNS topic.
 		final String msg = "SNS - File Uploaded";
 		final PublishRequest publishRequest = new PublishRequest("arn:aws:sns:ap-southeast-1:358493496165:LambdaBreach", msg);
 		final PublishResult publishResponse = snsClient.publish(publishRequest);
 		 // Print the MessageId of the message.
 		System.out.println("MessageId: " + publishResponse.getMessageId());
-		
+		****/
 		
 		
         request.setAttribute("message", "Upload has been done successfully!");
