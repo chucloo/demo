@@ -7,7 +7,7 @@ public class Calculator {
 		
 		public int addition(int num1, int num2) {
 	
-	 /***	
+	
 			// dummy code
 			int param = 1;
 			
@@ -17,7 +17,7 @@ public class Calculator {
 				  ; // do nothing
 			else if (param == 1)  // Noncompliant
 				; // do nothing
-		***/	
+		
 			
 			return (num1 + num2);
 	    }
